@@ -1,5 +1,5 @@
 import * as AJV from 'ajv'
-import { Options, Thenable } from 'ajv'
+import { Options, Thenable, ErrorObject } from 'ajv'
 import { Either, left, right } from 'fp-ts/lib/either'
 
 export type JsonData = null | boolean | number | string | object
@@ -79,8 +79,15 @@ export interface SchemaArray extends Array<Schema> {
 }
 
 export class ValidationFailed extends Error {
-    constructor(public schema: Schema, public value: any, public errors: any) {
+    public data: {
+        schema: Schema
+        value: any
+        errors?: ErrorObject[]
+    }
+
+    constructor(schema: Schema, value: any, errors?: ErrorObject[]) {
         super('Validation failed.')
+        this.data = { schema, value, errors }
     }
 }
 
@@ -104,19 +111,22 @@ export function validate(
         : validateSync(schema, options)
 }
 
-export function validateSync(
-    schema: Schema,
-    options?: Options
-): SyncValidateFn {
+function validateSync(schema: Schema, options?: Options): SyncValidateFn {
     const vf = new AJV(options).compile(schema)
 
     return <T>(value: T): Either<ValidationFailed, T> =>
         vf(value)
             ? right(value)
-            : left(new ValidationFailed(schema, value, vf.errors))
+            : left(
+                  new ValidationFailed(
+                      schema,
+                      value,
+                      vf.errors !== null ? vf.errors : undefined
+                  )
+              )
 }
 
-export function validateAsync(
+function validateAsync(
     schema: Schema & { $async: true },
     options?: Options
 ): AsyncValidateFn {
