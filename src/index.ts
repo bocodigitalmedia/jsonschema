@@ -17,6 +17,8 @@ export interface SimpleTypeArray extends Array<SimpleType> {
     0: SimpleType
 }
 
+export type Subschema = true | false | Schema
+
 export interface Schema {
     $id?: string
     $schema?: string
@@ -34,42 +36,42 @@ export interface Schema {
     maxLength?: number
     minLength?: number
     pattern?: string
-    additionalItems?: Schema
-    items?: Schema | SchemaArray
+    additionalItems?: Subschema
+    items?: Subschema | SchemaArray
     maxItems?: number
     minItems?: number
     uniqueItems?: boolean
-    contains?: Schema
+    contains?: Subschema
     maxProperties?: number
     minProperties?: number
     required?: string[]
-    additionalProperties?: Schema
+    additionalProperties?: Subschema
     definitions?: {
-        [key: string]: Schema
+        [key: string]: Subschema
     }
     properties?: {
-        [key: string]: Schema
+        [key: string]: Subschema
     }
     patternProperties?: {
-        [key: string]: Schema
+        [key: string]: Subschema
     }
     dependencies?: {
-        [key: string]: Schema | SchemaArray
+        [key: string]: Subschema | SchemaArray
     }
-    propertyNames?: Schema
+    propertyNames?: Subschema
     const?: JsonData
     enum?: JsonData[]
     type?: SimpleType | SimpleTypeArray
     format?: string
     contentMediaType?: string
     contentEncoding?: string
-    if?: Schema
-    then?: Schema
-    else?: Schema
+    if?: Subschema
+    then?: Subschema
+    else?: Subschema
     allOf?: SchemaArray
     anyOf?: SchemaArray
     oneOf?: SchemaArray
-    not?: Schema
+    not?: Subschema
 }
 
 export interface SchemaArray extends Array<Schema> {
