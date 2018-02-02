@@ -1,6 +1,6 @@
 {
     "name": "@bocodigitalmedia/jsonschema",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "JSON Schema validation",
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",
