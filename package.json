@@ -1,29 +1,46 @@
 {
-    "name": "@bocodigitalmedia/jsonschema",
-    "version": "1.0.0",
-    "description": "JSON Schema validation",
-    "author": "Christian Bradley <christian.bradley@bocodigital.com>",
-    "main": "dist/cjs/index.js",
-    "module": "dist/esm/index.js",
-    "typings": "dist/esm/index.d.ts",
-    "license": "MIT",
-    "engines": {
-        "node": ">=6.5.0"
-    },
-    "files": ["package.json", "dist"],
-    "scripts": {
-        "build:esm": "tsc --outDir dist/esm --declaration",
-        "build:cjs": "tsc --outDir dist/cjs --module commonjs",
-        "build": "rimraf dist && npm run build:esm && npm run build:cjs",
-        "prepare": "npm run build"
-    },
-    "dependencies": {
-        "ajv": "^6.1.1",
-        "fp-ts": "^0.6.8"
-    },
-    "devDependencies": {
-        "rimraf": "^2.6.2",
-        "ts-node": "^4.1.0",
-        "typescript": "^2.7.1"
-    }
+  "name": "@bocodigitalmedia/jsonschema",
+  "version": "1.0.0",
+  "description": "JSON Schema validation",
+  "author": "Christian Bradley <christian.bradley@bocodigital.com>",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "typings": "dist/esm/index.d.ts",
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.5.0"
+  },
+  "files": [
+    "package.json",
+    "dist"
+  ],
+  "scripts": {
+    "build:esm": "tsc --outDir dist/esm --declaration",
+    "build:cjs": "tsc --outDir dist/cjs --module commonjs",
+    "build": "rimraf dist && npm run build:esm && npm run build:cjs",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "ajv": "^6.1.1",
+    "fp-ts": "^0.6.8"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.2",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.7.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bocodigitalmedia/jsonschema.git"
+  },
+  "keywords": [
+    "json",
+    "schema",
+    "jsonschema",
+    "validation"
+  ],
+  "bugs": {
+    "url": "https://github.com/bocodigitalmedia/jsonschema/issues"
+  },
+  "homepage": "https://github.com/bocodigitalmedia/jsonschema#readme"
 }
